@@ -4,6 +4,7 @@
     padding: 0;
     margin: 0;
     font-family: 'Yantramanav';
+    scroll-behavior: smooth;
 }
 
 body {
@@ -328,6 +329,7 @@ span.real {
 }
 
 .btn {
+    white-space: nowrap;
     margin: 15px 15px;
     width: 20%;
     height: 40px;
@@ -556,4 +558,34 @@ span.real {
 .setaVerMais.ativado {
     transform: rotate(180deg);
     transition: 0.5s;
+}
+
+footer {
+    background-color: #560c56;
+    height: 90px;
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: clamp(12px, 5vw, 18px);
+    color: #FFF;
+    display: flex;
+    align-items: center;
+}
+
+footer p {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    margin-top: 8px;
+}
+
+footer img {
+    padding-top: 5px;
+    display: block;
+    margin: auto;
+}
+
+footer a {
+    color: #ee07f2;
+    text-decoration: none;
 }

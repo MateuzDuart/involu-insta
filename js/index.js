@@ -5,8 +5,8 @@ var perfil = document.querySelector('#Perfil')
 var btnPerfil = document.querySelector('.btn.perfil')
 var mais = document.querySelector('.mais')
 var menos = document.querySelector('.menos')
-
 var painel = document.querySelector('.painel')
+var totPreco = 0
 var totAdded = 0
 
 function checarPerfil() {
@@ -29,33 +29,37 @@ function addLink() {
         let valorQuanti = quantidade.value
         let valorPerfil = perfil.value
         let valorPerfis = document.querySelectorAll('#Perfil')
-        if (servico.value == 'Seguidores') {
-            document.querySelector('.botoes .btn').href = `https://api.whatsapp.com/send?phone=5581986437864&text=ol%C3%A1%20eu%20gostaria%20de%20${valorQuanti}%20seguidores%20neste%20pefil%20${valorPerfil}`
-        } else if (servico.value == 'Curtidas' || servico.value == 'Curtidas no reels') {
-            if (valorPerfis.length <= 1) {
-                document.querySelector('.botoes .btn').href = `https://api.whatsapp.com/send?phone=5581986437864&text=ol%C3%A1%20eu%20gostaria%20de%20${valorQuanti}%20likes%20nesta%20foto%20${valorPerfil}`
-            } else {
-                let strPerfis = ''
-                valorPerfis.forEach((e) => {
-                    strPerfis += `${e.value}, `
-                })
-                document.querySelector('.botoes .btn').href = `https://api.whatsapp.com/send?phone=5581986437864&text=ol%C3%A1%20eu%20gostaria%20de%20${valorQuanti}%20likes%20dividido%20nestas%20publicação%20${strPerfis}`
+        if (totPreco >= 5) {
+            if (servico.value == 'Seguidores') {
+                document.querySelector('.botoes .btn').href = `https://api.whatsapp.com/send?phone=5581986437864&text=ol%C3%A1%20eu%20gostaria%20de%20${valorQuanti}%20seguidores%20neste%20pefil%20${valorPerfil}`
+            } else if (servico.value == 'Curtidas' || servico.value == 'Curtidas no reels') {
+                if (valorPerfis.length <= 1) {
+                    document.querySelector('.botoes .btn').href = `https://api.whatsapp.com/send?phone=5581986437864&text=ol%C3%A1%20eu%20gostaria%20de%20${valorQuanti}%20likes%20nesta%20foto%20${valorPerfil}`
+                } else {
+                    let strPerfis = ''
+                    valorPerfis.forEach((e) => {
+                        strPerfis += `${e.value}, `
+                    })
+                    document.querySelector('.botoes .btn').href = `https://api.whatsapp.com/send?phone=5581986437864&text=ol%C3%A1%20eu%20gostaria%20de%20${valorQuanti}%20likes%20dividido%20nestas%20publicação%20${strPerfis}`
+                }
+            } else if (servico.value == 'Vizualização no reels') {
+                if (valorPerfis.length <= 1) {
+                    document.querySelector('.botoes .btn').href = `https://api.whatsapp.com/send?phone=5581986437864&text=ol%C3%A1%20eu%20gostaria%20de%20${valorQuanti}%20likes%20nesta%20publicação%20${valorPerfil}`
+                } else {
+                    let strPerfis = ''
+                    valorPerfis.forEach((e) => {
+                        strPerfis += `${e.value}, `
+                        console.log(e.value)
+                    })
+                    document.querySelector('.botoes .btn').href = `https://api.whatsapp.com/send?phone=5581986437864&text=ol%C3%A1%20eu%20gostaria%20de%20${valorQuanti}%20likes%20dividido%20nestas%20publicação%20\n${strPerfis}`
+                }
+    
+            } else if (servico.value.indexOf('impressões') != -1) {
+                document.querySelector('.botoes .btn').href = `https://api.whatsapp.com/send?phone=5581986437864&text=ol%C3%A1%20eu%20gostaria%20de%20${valorQuanti}%20novas%20visitas%20no%20meu%20perfil%20${valorPerfil}`
             }
-        } else if (servico.value == 'Vizualização no reels') {
-            if (valorPerfis.length <= 1) {
-                document.querySelector('.botoes .btn').href = `https://api.whatsapp.com/send?phone=5581986437864&text=ol%C3%A1%20eu%20gostaria%20de%20${valorQuanti}%20likes%20nesta%20publicação%20${valorPerfil}`
-            } else {
-                let strPerfis = ''
-                valorPerfis.forEach((e) => {
-                    strPerfis += `${e.value}, `
-                    console.log(e.value)
-                })
-                document.querySelector('.botoes .btn').href = `https://api.whatsapp.com/send?phone=5581986437864&text=ol%C3%A1%20eu%20gostaria%20de%20${valorQuanti}%20likes%20dividido%20nestas%20publicação%20\n${strPerfis}`
-            }
-
-        } else if (servico.value.indexOf('impressões') != -1) {
-            document.querySelector('.botoes .btn').href = `https://api.whatsapp.com/send?phone=5581986437864&text=ol%C3%A1%20eu%20gostaria%20de%20${valorQuanti}%20novas%20visitas%20no%20meu%20perfil%20${valorPerfil}`
         }
+    
+        
     } else {
         document.querySelectorAll('.botoes .btn').forEach((e) => {
             e.removeAttribute('href')
@@ -64,16 +68,18 @@ function addLink() {
 
 }
 
+document.querySelector('.botoes .btn').onclick = function () {
+    if (totPreco <= 4.999) {
+        alert('o valor mínimo é de 5 Reais')
+    }
+}
 servico.onchange = function () {
     this.parentElement.querySelector('.desc p').innerHTML = `- ${this.value} de alta qualidade<br>- Perfis Brasileiros<br>- chegam super rápidos <br>- Perfis reais`
     if (this.value == 'Seguidores' || this.value.indexOf('visitas') != -1) {
-        if (this.value.indexOf('visitas') != -1) {
-            quantidade.min = '1000'
-        } else {
+        if (this.value.indexOf('visitas') == -1) {
             for (let i = 1; i <= totAdded; i++) {
                 document.querySelector('.entradas').removeChild(document.querySelector('.entradas').lastChild)
             }
-            quantidade.min = '500'
             totAdded = 0
         }
         document.querySelector('.nome.perfil').innerHTML = '@Usuario'
@@ -81,13 +87,11 @@ servico.onchange = function () {
         mais.style.display = 'none'
         menos.style.display = 'none'
     } else if (this.value.indexOf('reels') != -1) {
-        quantidade.min = '1000'
         document.querySelector('.nome.perfil').innerHTML = 'Link reels'
         btnPerfil.querySelector('span').innerHTML = 'Checar reels'
         mais.style.display = 'block'
         menos.style.display = 'block'
     } else {
-        quantidade.min = '1000'
         document.querySelector('.nome.perfil').innerHTML = 'Link imagen'
         btnPerfil.querySelector('span').innerHTML = 'Checar Imagen'
         menos.style.display = 'block'
@@ -105,6 +109,7 @@ quantidade.onchange = function () {
     } else {
         total = this.value * (5 / 1000)
     }
+    totPreco = total
     if (String(total)[4] != undefined && String(total)[4] != 0) {
         total = String(total.toFixed(3))
     } else {
