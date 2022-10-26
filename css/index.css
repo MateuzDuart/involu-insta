@@ -1,0 +1,553 @@
+@import url('https://fonts.googleapis.com/css2?family=Yantramanav:wght@100;300;400;500;700&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'Yantramanav';
+}
+
+body {
+    background-color: #262022;
+}
+
+header {
+    width: 100%;
+    height: 50px;
+    background: linear-gradient(176deg, #FFFFFF 31.91%, #EE07F2 65.23%);
+    display: flex;
+    align-items: center;
+}
+
+header a{
+    width: 100%;
+    color: #f2f2f2;
+    text-decoration: none;
+}
+
+header img {
+    padding-left: 3%;
+    height: 100%;
+}
+
+header h1 {
+    font-size: clamp(20px, 4vw, 30px);
+}
+
+
+
+@media (min-width: 750px) {
+    header ul {
+        position: absolute;
+        right: 30px;
+        list-style: none;
+        display: flex;
+        align-items: center;
+        font-size: 20px;
+    }
+    
+    
+    header li {
+        margin-right: 20px;
+    }
+    
+    header li:hover {
+        text-decoration: underline
+    }    
+
+    div.rela {
+        display: contents;
+    }
+}
+
+@media (max-width: 750px) {
+    div.rela {
+        width: 210px;
+        height: 225px;
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        overflow: hidden;
+    }
+    header ul {
+        position: absolute;
+        top: 50px;
+        list-style: none;
+        display: flex;
+        align-items: flex-start;
+        font-size: 20px;
+        flex-direction: column;
+        background-color: #ee07f2;
+        box-shadow: inset 0px 0px 10px -5px black, -4px 9px 10px -5px rgba(0, 0, 0, 0.5);
+        animation-name: puxar_menu_re; 
+        animation-duration: 0.7s;
+        animation-fill-mode: forwards;
+    }
+    
+    header ul.ativado {
+        animation-name: puxar_menu; 
+
+    }
+
+    header li {
+        padding: 10px;
+        width: 100%;
+        box-shadow: inset 0px 0px 10px -5px rgba(0, 0, 0, 0.466);
+        padding-right: 20px;
+
+    }
+
+    header a:active {
+        background-color: #920594;
+    }
+    
+    .hamburger::before {
+        position: absolute;
+        top: 3px;
+        left: -55px;
+        font-family: 'Inter', sans-serif;
+        content: 'Menu';
+        color: white;
+        padding-right: 22px;
+    }
+
+    .hamburger.ativado::before {
+        content: 'Fechar';
+    }
+
+    .hamburger {
+        position: absolute;
+        width: 30px;
+        height: 25px;
+        margin: 10px;
+        cursor: pointer;
+        right: 10px;
+    }
+
+    .hamburger span {
+        position: absolute;
+        height: 3px;
+        width: 100%;
+        background-color: white;
+        top: var(--i);
+        pointer-events: none;
+        transition: 0.5s;
+    }
+    
+    .hamburger.ativado span {
+        top: 45%;
+        transition: 0.5s;
+        transform: rotate(var(--r));
+    }
+
+
+    @keyframes puxar_menu {
+        0% {
+            right: -210px;
+        } 
+
+        100% {
+            right: 0px;
+        }
+    }
+    @keyframes puxar_menu_re {
+        0% {
+            right: 0px;
+        } 
+
+        100% {
+            right: -210px;
+        }
+    }
+}
+
+.video {
+    height: clamp(237px ,30vw, 900px);
+    width: clamp(300px ,53vw, 900px);
+    background-color: white;
+    margin: auto;
+    margin-top: 80px;
+    box-shadow: 0px 4px 50px 49px rgb(238 7 242 / 25%), 0px 0px 30px 20px rgb(238 7 242 / 25%);
+    min-width: 300px;
+    max-width: 800px;
+    display: block;
+}
+
+@media (max-width:800px) {
+    .video {
+        height: clamp(237px ,30vw, 900px);
+        width: clamp(300px ,100VW, 424px);
+    }
+}
+
+@media (max-width:400px) {
+    .video {
+        height: clamp(200px ,30vw, 900px);
+    }
+}
+
+
+.painel {
+    margin: 100px auto;
+    width: clamp(300px, 100vw, 900px);
+    min-height: 75vh;
+    background-color: rgba(238, 7, 242, 0.5);
+    border-radius: 20px;
+    min-width: 300px;
+}
+
+.painel select {
+    margin-top: 50px;
+    width: 100%;
+    height: 50px;
+    font-size: 25px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: url(../img/seta-baixo.png) no-repeat center right #FFF;
+    background-size: 30px;
+    background-position: 98%;
+    border: 2px solid #333;
+    border-radius: 10px;
+    cursor: pointer;
+    
+}
+
+.desc {
+    min-height: 100px;
+    width: 90%;
+    background-color: #F2F2F2;
+    margin: 20px auto;
+    border: 1px solid #333;
+}
+
+.desc p {
+    font-size: 20px;
+    line-height: 25px;
+}
+
+
+div.entrada{
+    display: flex;
+    position: relative;
+    margin: 20px 0;
+}
+
+div.entrada span.nome {
+    position: absolute;
+    padding: 8px 10px;
+    font-size: 25px;
+    color: rgb(78, 78, 78);
+    transition: 0.3s;
+}
+
+div.entrada input:valid {
+    transition: 0.2s;
+    margin-top: 10px;
+}
+
+
+
+div.entrada input:valid ~ span.nome {
+    padding: 0 20px;
+    transform: scale(0.9);
+    top: -10px;
+    transition: 0.3s;
+    background-color: #8A148A;
+    color: #F2F2F2;
+    border: 2px solid #333;
+} 
+
+#quantidade, #Perfil {
+    width: 99.6%;
+    height: 40px;
+    font-size: 25px;
+    border-radius: 10px;
+}
+
+input:focus, select:focus {
+    background-color: #fdeefd;
+    outline: 2px solid rgb(102, 229, 252);
+}
+
+.adicionar {
+    display: flex;
+    margin: auto;
+    width: 40%;
+}
+
+.btn-adicionar {
+    display: none;
+    position: relative;
+    margin: auto;
+    width: 50px;
+    height: 50px;
+    background-color: white;
+    border-radius: 50%;
+    border: 1px solid cyan;
+    cursor: pointer;
+}
+
+.btn-adicionar:active {
+    transform: scale(0.9);
+}
+
+.btn-adicionar::before, .btn-adicionar::after {
+    content: '';
+    width: 85%;
+    height: 5px;
+    background-color: #EE07F2;
+    position: absolute;
+    border-radius: 10px;
+    top: 50%;
+    left: 4px;
+}
+
+.mais::before {
+    transform: translateY(-50%) rotate(90deg);
+} 
+.mais::after {
+    transform: translateY(-50%);
+
+}
+
+.painel .preco {
+    display: block;
+    color: #f2f2f2;
+    font-size: 17px;
+    text-align: center;
+    margin-top: 15px;
+}
+
+span.real {
+    font-size: 30px;
+}
+
+.botoes {
+    display: flex;
+    justify-content: center;
+
+}
+
+.btn {
+    margin: 15px 15px;
+    width: 20%;
+    height: 40px;
+    background-color: #f2f2f2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    transition: 0.2s;
+    color: black;
+    text-decoration: none;
+    border-radius: 10px;
+    min-width: 120px;
+}
+
+.btn:active {
+    transform: scale(0.9);
+    transition: 0.2s;
+}
+
+.servicos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 30px;
+}
+
+.carta {
+    text-align: center;
+    height: 300px;
+    width: 230px;
+    background-color: #8A148A;
+    border-radius: 20px;
+    color: #f2f2f2;
+    box-shadow: 5px 2px 3px black;
+}
+
+
+.carta h1 {
+    margin: 10px;
+    font-size: 35px;
+}
+
+.carta p {
+    margin: 10px;
+    font-size: 25px;
+    line-height: 50px;
+
+}
+
+.carta .numero {
+    font-size: 40px;
+    font-weight: 500;
+
+}
+
+.carta .preco {
+    font-size: 40px;
+    font-weight: 500;
+
+}
+
+.carta .btn {
+    width: 80%;
+    margin: auto;
+}
+
+.pop-cta {
+    z-index: 2;
+    display: none;
+    width: clamp(300px, 70%, 500px);
+    height: 450px;
+    background-color: #8A148A;
+    position: fixed;
+    top: 10%;
+    box-shadow: 0px 0px 100px 600px #0000005e, 0px 0px 30px 9px rgba(0, 0, 0, 0.5);
+    flex-direction: column;
+    justify-content: center;
+}
+
+.fechador {
+    display: none;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    height: 100vh;
+    z-index: 1;
+}
+
+.fechador.ativo {
+    display: block;
+}
+.publicacao.ativo, .perfil-cta.ativo {
+    display: flex;
+}
+
+.pop-cta h1 {
+    padding: 0 10px;
+    color: #f2f2f2;
+    text-align: center;
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.link, .usuario {
+    width: 99.6%;
+    height: 50px;
+    font-size: 25px;
+    border-radius: 10px;
+}
+
+.pop-cta .fechar {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 50px;
+    width: 50px;
+    transition: 0.2s;
+}
+
+.pop-cta .fechar:active {
+    transform: scale(0.8);
+    transition: 0.2s;
+}
+
+.pop-cta .fechar span {
+    position: absolute;
+    width: 100%;
+    height: 5px;
+    background-color: black;
+    top: 20px;
+    right: 0;
+    border-radius: 10px;
+    transform: rotate(45deg);
+}
+
+.pop-cta .fechar span:nth-child(2) {
+    transform: rotate(135deg);
+}
+
+.pop-cta .btn {
+    width: unset;
+    height: 50px;
+}
+.caixa-faq {
+    width: 70%;
+    min-height: 300px;
+    background-color: #8A148A;
+    margin: 100px auto;
+    font-size: 25px;
+    border-radius: 20px 20px 0 0;
+    box-shadow: inset 0px 0px 20px -4px black, 3px 3px 8px 3px rgba(0, 0, 0, 0.507);
+    min-width: 300px;
+
+}
+
+
+.caixa-faq header {
+    border-radius: 20px 20px 0 0;
+    box-shadow: inset 0px 0px 20px -4px black;
+}
+
+.caixa-faq header h1 {
+    padding: 10px;
+    font-size: 25px;
+}
+
+.pergunta {
+    position: relative;
+    width: 100%;
+    min-height: 55px;
+    margin: 20px 0px;
+    background: #EE07F2;
+    border-radius: 15px;
+}
+
+.resposta {
+    overflow: hidden;
+    height: 0px;
+    opacity: 0;
+    margin-top: 15px;
+    background-color: #b619b9;
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 25px;
+    transition: 0.5s;
+}
+
+.resposta.ativado {
+    opacity: 1;
+    height: unset;
+    transition: 0.5;
+}
+
+.resposta p{
+    padding: 10px;
+}
+
+.pergunta h3 {
+    width: 68%;
+    font-size: clamp(16px, 3vw, 20px);
+    margin-left: 20px;
+    padding-top: 16px;
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+}
+
+.setaVerMais {
+    height: clamp(10px ,45%,18px);
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    transition: 0.5s;
+}
+
+.setaVerMais.ativado {
+    transform: rotate(180deg);
+    transition: 0.5s;
+}
