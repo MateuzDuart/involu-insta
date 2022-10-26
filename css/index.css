@@ -408,6 +408,12 @@ span.real {
     justify-content: center;
 }
 
+@media (max-width:500px) {
+    .pop-cta {
+        width: clamp(300px, 100%, 500px);
+    }
+}
+
 .fechador {
     display: none;
     width: 100vw;
