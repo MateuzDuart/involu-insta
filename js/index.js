@@ -74,8 +74,10 @@ document.querySelector('.botoes .btn').onclick = function () {
     }
 }
 servico.onchange = function () {
-    this.parentElement.querySelector('.desc p').innerHTML = `- ${this.value} de alta qualidade<br>- Perfis Brasileiros<br>- chegam super rápidos <br>- Perfis reais`
+    console.log(this.value)
+    this.parentElement.querySelector('.desc p').innerHTML = ``
     if (this.value == 'Seguidores' || this.value.indexOf('visitas') != -1) {
+        this.parentElement.querySelector('.desc p').innerHTML = `✅ Velocidade: ~ 633-1400 / hora<br>✅ Alta qualidade<br>✅ Quedas: ~ 0 a 3%<br>✅ Garantia: 60 dias`
         if (this.value.indexOf('visitas') == -1) {
             for (let i = 1; i <= totAdded; i++) {
                 document.querySelector('.entradas').removeChild(document.querySelector('.entradas').lastChild)
@@ -87,6 +89,7 @@ servico.onchange = function () {
         mais.style.display = 'none'
         menos.style.display = 'none'
     } else if (this.value.indexOf('reels') != -1) {
+        this.parentElement.querySelector('.desc p').innerHTML = `✅Link: Video reel<br>✅Qualidade: Boa<br>✅Garantia: Rápido`
         document.querySelector('.nome.perfil').innerHTML = 'Link reels'
         btnPerfil.querySelector('span').innerHTML = 'Checar reels'
         mais.style.display = 'block'
@@ -99,6 +102,14 @@ servico.onchange = function () {
     }
     quantidade.value = ''
     preco.innerHTML = '0,00R$'
+    if (this.value == 'Curtidas') {
+        this.parentElement.querySelector('.desc p').innerHTML = `✅Início 0-6min<br>✅Misturados<br>✅Alta qualidade<br>✅Velocidade: 100K/Dia`
+    } else if (this.value == 'Vizualização no reels') {
+        this.parentElement.querySelector('.desc p').innerHTML = `✅Link: Reel<br>✅Garantia: Sim<br>✅Velocidade: 15K/HORA`
+    }else if (this.value == 'impressões, visitas no perfil e alcance') {
+        this.parentElement.querySelector('.desc p').innerHTML = `✅Qualidade: Real<br>✅Velocidade: Velocidade rápida<br>✅Mínimo: 1.000<br>✅Máximo: 10.000`
+
+    }
 }
 
 quantidade.onchange = function () {
